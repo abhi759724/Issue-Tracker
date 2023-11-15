@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
-const url = "mongodb://0.0.0.0:27017/issueTracker";
-// mongoose.connect('url')
-mongoose.connect(url);
+// import dotenv
+require("dotenv").config();
+
+mongoose.connect(process.env.MONGO_URI);
 const db = mongoose.connection;
 
 //If any Error then Getting this Line

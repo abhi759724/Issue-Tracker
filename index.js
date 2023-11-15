@@ -1,21 +1,22 @@
 const express = require("express");
 const app = express();
-
-// import path
-const path = require("path");
-
 // import dotenv
 require("dotenv").config();
-
 // import database connection
 const db = require("./config/mongoose");
+// import path
+const path = require("path");
+const expressLayouts = require("express-ejs-layouts");
 
 // set ejs layouts
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+app.use(express.urlencoded());
+app.use(expressLayouts);
+
 // set static files path
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static("assets"));
 
 // import routes
 app.use("/", require("./routes"));
